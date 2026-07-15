@@ -43,13 +43,10 @@ class IntegrationReceiverController extends Controller
         return response()->json(['message' => 'Customer berhasil di-soft-delete dari sync.']);
     }
 
-    public function createOrUpdateInvoice(Request $request)
-{
-    $data = $request->all();
+    public function updateInvoiceInfo(Request $request)
+    {
+        \Illuminate\Support\Facades\Log::info('Invoice info diterima di Management: ', $request->all());
 
-    // Simpan sebagai catatan aja (Management bukan master invoice, cuma nampung info)
-    \Illuminate\Support\Facades\Log::info('Invoice diterima di Management: ', $data);
-
-    return response()->json(['message' => 'Invoice info diterima di Management.'], 200);
-}
-}
+        return response()->json(['message' => 'Invoice info diterima di Management.'], 200);
+    }
+    }
