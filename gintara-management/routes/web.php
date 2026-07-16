@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard yang bisa diakses Admin dan Superadmin
+// Dashboard Admin & Superadmin
 Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
     Route::get('/dashboard', function () {
@@ -22,16 +22,26 @@ Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
 });
 
-// Menu khusus Superadmin nih bos
+// Manajemen User (Superadmin saja)
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::get('/users', function () {
         return "Halaman Manajemen User";
-    });
+    })->name('users.index');
 
 });
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    Route::get('/customers', [CustomerViewController::class, 'index'])
+        ->name('customers.index');
+
+    Route::get('/customers/{customer}', [CustomerViewController::class, 'show'])
+        ->name('customers.show');
+=======
+>>>>>>> 6e9425b40f4480dadd64a9c80a67601379e49842
 Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers.index');
 
 Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
@@ -44,4 +54,9 @@ Route::get('/customers/{id}/edit', [CustomerViewController::class, 'edit'])->nam
 
 Route::put('/customers/{id}', [CustomerViewController::class, 'update'])->name('customers.update');
 
+<<<<<<< HEAD
 Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
+=======
+Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
+>>>>>>> db96cdb383643bcb824dcaed2d674b796b703d92
+>>>>>>> 6e9425b40f4480dadd64a9c80a67601379e49842
