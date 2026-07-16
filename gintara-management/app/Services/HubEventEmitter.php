@@ -15,9 +15,9 @@ class HubEventEmitter
 
     public function __construct()
     {
-        $this->hubUrl   = config('services.hub.base_url');
-        $this->apiKey   = config('services.hub.api_key');
-        $this->apiSecret = config('services.hub.api_secret');
+        $this->hubUrl = config('services.hub.base_url') ?? 'http://127.0.0.1:8001';
+        $this->apiKey = config('services.hub.api_key') ?? 'dev_api_key';
+        $this->apiSecret = config('services.hub.api_secret') ?? 'dev_api_secret';
     }
 
     public function emit(string $eventType, string $entityType, string $sourceRecordId, array $data): array

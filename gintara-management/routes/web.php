@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerViewController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 // Dashboard yang bisa diakses Admin dan Superadmin
 Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
@@ -29,3 +31,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     });
 
 });
+=======
+// Customers view pages (Blade)
+Route::get('/customers', [CustomerViewController::class, 'index']);
+Route::get('/customers/{id}', [CustomerViewController::class, 'show']);
+
+>>>>>>> b65bf9b (ubah semua yang menyangkut crud)
