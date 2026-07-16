@@ -31,8 +31,17 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
 });
 
-Route::get('/customers', [CustomerViewController::class, 'index'])
-    ->name('customers.index');
 
-Route::get('/customers/{id}', [CustomerViewController::class, 'show'])
-    ->name('customers.show');
+Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers.index');
+
+Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
+
+Route::post('/customers', [CustomerViewController::class, 'store'])->name('customers.store');
+
+Route::get('/customers/{id}', [CustomerViewController::class, 'show'])->name('customers.show');
+
+Route::get('/customers/{id}/edit', [CustomerViewController::class, 'edit'])->name('customers.edit');
+
+Route::put('/customers/{id}', [CustomerViewController::class, 'update'])->name('customers.update');
+
+Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
