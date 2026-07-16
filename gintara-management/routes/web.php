@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard yang bisa diakses Admin dan Superadmin
+// Dashboard Admin & Superadmin
 Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
     Route::get('/dashboard', function () {
@@ -22,17 +22,18 @@ Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
 });
 
-// Menu khusus Superadmin nih bos
+// Manajemen User (Superadmin saja)
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::get('/users', function () {
         return "Halaman Manajemen User";
-    });
+    })->name('users.index');
 
 });
 
-Route::get('/customers', [CustomerViewController::class, 'index'])
-    ->name('customers.index');
 
-Route::get('/customers/{id}', [CustomerViewController::class, 'show'])
-    ->name('customers.show');
+    Route::get('/customers', [CustomerViewController::class, 'index'])
+        ->name('customers.index');
+
+    Route::get('/customers/{customer}', [CustomerViewController::class, 'show'])
+        ->name('customers.show');
