@@ -22,7 +22,7 @@ Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
 });
 
-// Menu khusus Superadmin
+// Menu khusus Superadmin nih bos
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::get('/users', function () {
