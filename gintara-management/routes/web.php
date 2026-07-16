@@ -30,7 +30,9 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     });
 
 });
-// Customers view pages (Blade)
-Route::get('/customers', [CustomerViewController::class, 'index']);
-Route::get('/customers/{id}', [CustomerViewController::class, 'show']);
 
+Route::get('/customers', [CustomerViewController::class, 'index'])
+    ->name('customers.index');
+
+Route::get('/customers/{id}', [CustomerViewController::class, 'show'])
+    ->name('customers.show');
