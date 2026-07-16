@@ -1,116 +1,48 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Manajemen Pelanggan</title>
-
-    <link rel="stylesheet" href="{{ asset('css/customers/style.css') }}">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-</head>
-
 <body>
 
 <div class="container">
 
     <div class="header">
-
-        <div>
-
-            <h1>Manajemen Pelanggan</h1>
-
-            <p>
-                Kelola seluruh data pelanggan pada sistem.
-            </p>
-
-        </div>
+        <h1>📊 Manajemen Pelanggan</h1>
 
         <a href="{{ route('customers.create') }}" class="btn-primary">
-
-            <i class="bi bi-plus-circle"></i>
-
-            Tambah Pelanggan
-
+            + Tambah Pelanggan
         </a>
-
     </div>
 
     @if(session('success'))
-
         <div class="success">
-
             {{ session('success') }}
-
         </div>
-
     @endif
 
     @php
-
         $total = $customers->count();
-
         $aktif = $customers->where('status','aktif')->count();
-
         $suspend = $customers->where('status','suspend')->count();
-
         $berhenti = $customers->where('status','berhenti')->count();
-
     @endphp
 
     <div class="stats">
 
         <div class="stat-card">
-
             <h3>Total Pelanggan</h3>
-
-            <div class="number">
-
-                {{ $total }}
-
-            </div>
-
+            <div class="number">{{ $total }}</div>
         </div>
 
         <div class="stat-card">
-
-            <h3>Pelanggan Aktif</h3>
-
-            <div class="number">
-
-                {{ $aktif }}
-
-            </div>
-
+            <h3>Status Aktif</h3>
+            <div class="number">{{ $aktif }}</div>
         </div>
 
         <div class="stat-card">
-
             <h3>Status Suspend</h3>
-
-            <div class="number">
-
-                {{ $suspend }}
-
-            </div>
-
+            <div class="number">{{ $suspend }}</div>
         </div>
 
         <div class="stat-card">
-
             <h3>Status Berhenti</h3>
-
-            <div class="number">
-
-                {{ $berhenti }}
-
-            </div>
-
+            <div class="number">{{ $berhenti }}</div>
         </div>
 
     </div>
@@ -122,25 +54,14 @@
             <thead>
 
                 <tr>
-
                     <th>No</th>
-
-                    <th>Nama</th>
-
+                    <th>Nama Pelanggan</th>
                     <th>Telepon</th>
-
                     <th>Alamat</th>
-
                     <th>Username PPPoE</th>
-
                     <th>Status</th>
-
-                    <th>Sinkronisasi</th>
-
-                    <th style="text-align:center">
-                        Aksi
-                    </th>
-
+                    <th>Sync Status</th>
+                    <th>Aksi</th>
                 </tr>
 
             </thead>
@@ -151,59 +72,27 @@
 
                 <tr>
 
+                    <td>{{ $loop->iteration }}</td>
+
                     <td>
+                        <strong>{{ $customer->nama }}</strong>
+                    </td>
 
-                        {{ $loop->iteration }}
+                    <td>{{ $customer->telepon }}</td>
 
+                    <td>{{ $customer->alamat }}</td>
+
+                    <td>
+                        <code>{{ $customer->pppoe_username }}</code>
                     </td>
 
                     <td>
-
-                        <strong>
-
-                            {{ $customer->nama }}
-
-                        </strong>
-
-                    </td>
-
-                    <td>
-
-                        {{ $customer->telepon }}
-
-                    </td>
-
-                    <td>
-
-                        {{ $customer->alamat }}
-
-                    </td>
-
-                    <td>
-
-                        <code>
-
-                            {{ $customer->pppoe_username }}
-
-                        </code>
-
-                    </td>
-
-                    <td>
-
                         <span class="status {{ strtolower($customer->status) }}">
-
                             {{ strtoupper($customer->status) }}
-
                         </span>
-
                     </td>
 
-                    <td>
-
-                        {{ $customer->sync_status }}
-
-                    </td>
+                    <td>{{ $customer->sync_status }}</td>
 
                     <td>
 
@@ -212,31 +101,19 @@
                             <button
                                 class="btn-small btn-view"
                                 onclick="viewCustomer({{ $customer->id }})">
-
-                                <i class="bi bi-eye"></i>
-
                                 Lihat
-
                             </button>
 
                             <button
                                 class="btn-small btn-edit"
                                 onclick="editCustomer({{ $customer->id }})">
-
-                                <i class="bi bi-pencil-square"></i>
-
                                 Edit
-
                             </button>
 
                             <button
                                 class="btn-small btn-delete"
                                 onclick="deleteCustomer({{ $customer->id }})">
-
-                                <i class="bi bi-trash"></i>
-
                                 Hapus
-
                             </button>
 
                         </div>
@@ -244,44 +121,67 @@
                     </td>
 
                 </tr>
-                @empty
 
-<tr>
+            @empty
 
-    <td colspan="8" class="empty-state">
+                <tr>
 
-        <i class="bi bi-database-x"></i>
+                    <td colspan="8" class="empty-state">
+                        Tidak ada data pelanggan
+                    </td>
 
-        <p style="margin-top:15px;">
+                </tr>
 
-            Belum ada data pelanggan.
+            @endforelse
 
-        </p>
+            </tbody>
 
-    </td>
+        </table>
 
-</tr>
-
-@endforelse
-
-</tbody>
-
-</table>
-
-</div>
+    </div>
 
 </div>
 
 <script>
 
-const BASE_URL = "{{ url('customers') }}";
+function viewCustomer(id){
+    window.location.href="/customers/"+id;
+}
 
-const CSRF_TOKEN = "{{ csrf_token() }}";
+function editCustomer(id){
+    window.location.href="/customers/"+id+"/edit";
+}
+
+function deleteCustomer(id){
+
+    if(!confirm("Yakin ingin menghapus pelanggan ini?")){
+        return;
+    }
+
+    const form=document.createElement("form");
+
+    form.method="POST";
+    form.action="/customers/"+id;
+
+    const token=document.createElement("input");
+    token.type="hidden";
+    token.name="_token";
+    token.value="{{ csrf_token() }}";
+
+    const method=document.createElement("input");
+    method.type="hidden";
+    method.name="_method";
+    method.value="DELETE";
+
+    form.appendChild(token);
+    form.appendChild(method);
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+}
 
 </script>
 
-<script src="{{ asset('js/customers/script.js') }}"></script>
-
 </body>
-
-</html>
