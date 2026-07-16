@@ -7,7 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
 // Dashboard yang bisa diakses Admin dan Superadmin
 Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
@@ -23,7 +22,7 @@ Route::middleware(['auth', 'role:superadmin,admin'])->group(function () {
 
 });
 
-// Menu khusus Superadmin
+// Menu khusus Superadmin nih bos
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
     Route::get('/users', function () {
@@ -31,9 +30,7 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
     });
 
 });
-=======
 // Customers view pages (Blade)
 Route::get('/customers', [CustomerViewController::class, 'index']);
 Route::get('/customers/{id}', [CustomerViewController::class, 'show']);
 
->>>>>>> b65bf9b (ubah semua yang menyangkut crud)
