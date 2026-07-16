@@ -49,4 +49,11 @@ class IntegrationReceiverController extends Controller
 
         return response()->json(['message' => 'Invoice info diterima di Management.'], 200);
     }
+
+    public function updatePaymentInfo(Request $request)
+    {
+        \Illuminate\Support\Facades\Log::info('Payment info diterima di Management: ', $request->all());
+
+        return response()->json(['message' => 'Payment info diterima di Management.'], 200);
     }
+}

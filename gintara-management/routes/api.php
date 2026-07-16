@@ -22,3 +22,5 @@ Route::post('/integration/customers/softdelete', [IntegrationReceiverController:
 
 Route::post('/integration/subscriptions/update', [IntegrationReceiverController::class, 'createOrUpdateInvoice']);
 Route::post('/integration/invoices/update', [IntegrationReceiverController::class, 'updateInvoiceInfo']);
+
+Route::post('/integration/payments/update', [IntegrationReceiverController::class, 'updatePaymentInfo']);
