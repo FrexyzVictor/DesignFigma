@@ -12,8 +12,12 @@
     @include('partials.icon', ['name' => 'plus', 'class' => 'w-4 h-4'])
     Buat Event
   </a>
-  {{-- Tombol tambah floating khusus mobile --}}
-  <a href="#" data-ripple class="g-ripple-container g-btn-primary lg:hidden fixed bottom-24 right-5 z-30 w-12 h-12 rounded-full p-0 shadow-card-lg">
+  {{-- Tombol tambah floating khusus mobile — posisi dikunci pakai style inline
+       (bukan cuma class Tailwind) supaya tetap benar di kanan-bawah walau
+       ada masalah build/cache CSS. Tetap "fixed" = ikut diam di tempat saat discroll. --}}
+  <a href="#" data-ripple
+     style="position:fixed; bottom:6rem; right:1.25rem; z-index:30;"
+     class="g-ripple-container g-btn-primary lg:hidden w-12 h-12 rounded-full p-0 shadow-card-lg">
     @include('partials.icon', ['name' => 'plus', 'class' => 'w-5 h-5'])
   </a>
 </div>

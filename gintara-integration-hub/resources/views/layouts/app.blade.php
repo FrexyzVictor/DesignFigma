@@ -7,12 +7,20 @@
   <title>@yield('title', 'Gintara Net')</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-surface min-h-screen text-ink">
+<body class="bg-surface min-h-screen text-ink relative overflow-x-hidden">
 
-  <div class="lg:flex min-h-screen">
+  {{-- Latar belakang gelembung mengambang — dekoratif saja, tidak mengganggu klik (pointer-events-none) --}}
+  <div class="g-bg-blobs" aria-hidden="true">
+    <span class="g-blob g-blob--1"></span>
+    <span class="g-blob g-blob--2"></span>
+    <span class="g-blob g-blob--3"></span>
+    <span class="g-blob g-blob--4"></span>
+  </div>
+
+  <div class="lg:flex min-h-screen relative z-10">
 
     {{-- Sidebar: disembunyikan di HP, tampil mulai layar besar (lg = 1024px+) --}}
-    <aside class="hidden lg:flex w-64 shrink-0 bg-white border-r border-gray-100 flex-col py-6 px-4 sticky top-0 h-screen">
+    <aside class="hidden lg:flex w-64 shrink-0 bg-white border-r border-gray-100 flex-col py-6 px-4 sticky top-0 h-screen z-10">
       <div class="flex items-center gap-2 px-2 mb-8">
         <span class="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center font-bold">G</span>
         <span class="font-bold text-ink">Gintara Net</span>

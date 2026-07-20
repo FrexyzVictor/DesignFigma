@@ -29,6 +29,68 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+  /* ===== Latar gelembung mengambang ===== */
+  .g-bg-blobs {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .g-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(50px);
+    opacity: 0.4;
+    will-change: transform;
+  }
+  .g-blob--1 {
+    width: 280px; height: 280px;
+    top: -60px; left: -60px;
+    background: radial-gradient(circle at 30% 30%, #3B6DF4, transparent 70%);
+    animation: gBlobFloatA 20s ease-in-out infinite;
+  }
+  .g-blob--2 {
+    width: 240px; height: 240px;
+    top: 55%; right: -70px;
+    background: radial-gradient(circle at 30% 30%, #5C86F5, transparent 70%);
+    animation: gBlobFloatB 24s ease-in-out infinite;
+  }
+  .g-blob--3 {
+    width: 190px; height: 190px;
+    top: 30%; left: 65%;
+    background: radial-gradient(circle at 30% 30%, #2952DE, transparent 70%);
+    animation: gBlobFloatC 17s ease-in-out infinite;
+  }
+  .g-blob--4 {
+    width: 220px; height: 220px;
+    bottom: -60px; left: 15%;
+    background: radial-gradient(circle at 30% 30%, #1F3FB0, transparent 70%);
+    animation: gBlobFloatA 28s ease-in-out infinite reverse;
+  }
+  @keyframes gBlobFloatA {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(50px, 40px) scale(1.1); }
+  }
+  @keyframes gBlobFloatB {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-40px, -50px) scale(0.92); }
+  }
+  @keyframes gBlobFloatC {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-60px, 30px) scale(1.12); }
+  }
+  /* Di HP, gelembung dikecilkan supaya tidak makan banyak ruang/performa */
+  @media (max-width: 767px) {
+    .g-blob { filter: blur(36px); opacity: 0.3; }
+    .g-blob--1, .g-blob--2, .g-blob--4 { width: 160px; height: 160px; }
+    .g-blob--3 { width: 130px; height: 130px; }
+  }
+  /* Hormati preferensi pengguna yang sensitif terhadap gerakan */
+  @media (prefers-reduced-motion: reduce) {
+    .g-blob { animation: none !important; }
+  }
+
   /* Container relatif untuk efek ripple dari app.js */
   .g-ripple-container { @apply relative overflow-hidden; }
   .g-ripple {
