@@ -67,5 +67,4 @@ Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])
 Route::put('/customers/{id}', [CustomerViewController::class, 'update'])->name('customers.update');
 
 Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
->>>>>>> 6e9425b40f4480dadd64a9c80a67601379e49842
->>>>>>> f4f21b21143ada33d6cb219729e99985ef05f269
+

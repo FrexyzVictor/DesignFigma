@@ -345,3 +345,76 @@ table{
 }
 
 }
+
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#334155;
+}
+
+.form-control{
+    width:100%;
+    height:50px;
+    padding:0 16px;
+    border:1.5px solid #dbe4ee;
+    border-radius:12px;
+    background:#fff;
+    font-size:14px;
+    color:#334155;
+    transition:.25s ease;
+    outline:none;
+}
+
+textarea.form-control{
+    height:120px;
+    padding:14px 16px;
+    resize:vertical;
+}
+
+select.form-control{
+    cursor:pointer;
+}
+
+.form-control:hover{
+    border-color:#93c5fd;
+}
+
+.form-control:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    background:#fff;
+}
+
+.form-control::placeholder{
+    color:#94a3b8;
+}
+
+.button-group{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.button-group .btn-small{
+    text-decoration:none;
+    border:none;
+}
+
+@media(max-width:768px){
+
+.button-group{
+    flex-direction:column;
+}
+
+.button-group .btn-small{
+    justify-content:center;
+}
+
+}
