@@ -1,11 +1,164 @@
-@import 'tailwindcss';
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html, body {
+    @apply bg-surface text-ink font-sans antialiased;
+  }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+  /* Fokus keyboard yang jelas tapi tidak norak, konsisten di semua elemen interaktif */
+  a, button, input, [tabindex] {
+    @apply outline-none;
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    @apply ring-2 ring-primary/50 ring-offset-2 ring-offset-surface rounded-lg;
+  }
+
+  /* Scrollbar tipis untuk area yang bisa di-scroll (selain yang pakai .no-scrollbar) */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-gray-200 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-gray-300; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Container relatif untuk efek ripple dari app.js */
+  .g-ripple-container { @apply relative overflow-hidden; }
+  .g-ripple {
+    position: absolute;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.35;
+    pointer-events: none;
+    animation: ripple .6s ease-out forwards;
+    transform: scale(0);
+  }
+  @keyframes ripple {
+    to { transform: scale(2.6); opacity: 0; }
+  }
+
+  /* Skeleton loading shimmer, dipakai saat data belum siap */
+  .g-skeleton {
+    @apply relative overflow-hidden bg-gray-100 rounded-xl;
+    background-image: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent);
+    background-size: 400px 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+
+  /* Stagger fade-in untuk daftar kartu — dipasang otomatis lewat app.js (data-stagger) */
+  .g-stagger-item {
+    opacity: 0;
+    animation: fadeInUp .45s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Angka statistik "melompat" kecil saat selesai dihitung naik */
+  .g-count-pop { animation: countPop .35s ease-out; }
+  @keyframes countPop {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+
+  /* Toast notification masuk dari bawah (mobile) / kanan bawah (desktop) */
+  .g-toast-enter { animation: toastIn .3s cubic-bezier(.16,1,.3,1) both; }
+  .g-toast-leave { animation: toastOut .25s ease-in both; }
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(12px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes toastOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(8px) scale(.97); }
+  }
+}
+
+@layer components {
+  /* Kartu putih dasar dipakai di mobile & desktop */
+  .g-card {
+    @apply bg-card rounded-card shadow-card p-4 transition-shadow duration-300;
+  }
+  /* Kartu yang memang bisa diklik/ditekan mendapat efek "hidup" saat disentuh */
+  .g-card--interactive {
+    @apply cursor-pointer hover:shadow-card-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-card transition-all duration-200;
+  }
+
+  .g-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-colors duration-200;
+  }
+  .g-badge--success { @apply bg-success-bg text-success; }
+  .g-badge--warning { @apply bg-warning-bg text-warning; }
+  .g-badge--danger  { @apply bg-danger-bg  text-danger;  }
+
+  /* Titik status dengan efek "ping" halus — dipakai untuk item yang butuh perhatian (unread, live, dsb) */
+  .g-dot { @apply relative inline-block w-2 h-2 rounded-full; }
+  .g-dot--online, .g-dot--maintenance, .g-dot--offline {
+    @apply after:content-[''] after:absolute after:inset-0 after:rounded-full after:animate-ping;
+  }
+  .g-dot--online       { @apply bg-success after:bg-success/60; }
+  .g-dot--maintenance   { @apply bg-warning after:bg-warning/60; }
+  .g-dot--offline       { @apply bg-danger; } /* offline tidak ping — supaya tidak terkesan "aktif" */
+
+  /* Tombol utama dengan gradasi tipis + tekan mengempis sedikit, terasa lebih "solid" */
+  .g-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-white
+           active:scale-[.97] transition-all duration-150;
+    background-image: linear-gradient(to bottom, #5C86F5, #2952DE);
+    box-shadow: 0 6px 16px -4px rgba(59, 109, 244, 0.35);
+  }
+  .g-btn-primary:hover {
+    background-image: linear-gradient(to bottom, #3B6DF4, #1F3FB0);
+  }
+
+  /* Bottom nav khusus mobile */
+  .g-bottom-nav {
+    @apply fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur border-t border-gray-100 flex justify-around items-center py-2 z-40;
+  }
+  .g-bottom-nav a {
+    @apply relative flex flex-col items-center gap-0.5 text-[11px] text-ink-soft px-2 py-1 transition-colors duration-200;
+  }
+  .g-bottom-nav a.is-active {
+    @apply text-primary font-semibold;
+  }
+
+  /* "Bubble" bulat di belakang ikon — pudar masuk begitu item jadi aktif,
+     dan sedikit mengempis saat disentuh (bukan cuma titik kecil di atas). */
+  .g-nav-bubble {
+    @apply relative flex items-center justify-center w-11 h-8 rounded-2xl mb-0.5
+           bg-transparent transition-colors duration-300;
+  }
+  .g-nav-bubble svg { @apply transition-transform duration-200; }
+  .g-bottom-nav a:active .g-nav-bubble svg { @apply scale-90; }
+  .g-bottom-nav a.is-active .g-nav-bubble {
+    @apply bg-primary-50 animate-scale-in;
+  }
+
+  /* Sidebar khusus desktop */
+  .g-sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-ink-soft
+           hover:bg-primary-50 hover:text-primary hover:translate-x-0.5
+           transition-all duration-200;
+  }
+  .g-sidebar-link.is-active {
+    @apply bg-primary-50 text-primary font-semibold translate-x-0.5;
+  }
+
+  /* Toggle switch (dipakai di Pengaturan) — animasi halus, warna tegas saat aktif */
+  .g-toggle-track {
+    @apply w-11 h-6 bg-gray-200 rounded-full transition-colors duration-300
+           peer-checked:bg-primary peer-checked:shadow-[0_0_0_4px_rgba(59,109,244,0.35)];
+  }
+  .g-toggle-thumb {
+    @apply absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300 ease-out peer-checked:translate-x-5;
+  }
 }
