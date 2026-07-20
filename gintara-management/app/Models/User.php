@@ -17,6 +17,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $fillable = ['name', 'email', 'password', 'role'];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -28,5 +30,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role === 'super_admin';
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function changeRequests()
+    {
+        return $this->hasMany(ChangeRequest::class);
+    }
+
+    public function approvalsGiven()
+    {
+        return $this->hasMany(ChangeRequest::class, 'approved_by');
     }
 }
