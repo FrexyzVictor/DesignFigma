@@ -31,32 +31,28 @@ Route::middleware(['auth', 'role:superadmin'])->group(function () {
 
 });
 
+// ===================== CUSTOMER =====================
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    Route::get('/customers', [CustomerViewController::class, 'index'])
-        ->name('customers.index');
+Route::get('/customers', [CustomerViewController::class, 'index'])
+    ->name('customers.index');
 
-    Route::get('/customers/{customer}', [CustomerViewController::class, 'show'])
-        ->name('customers.show');
-=======
->>>>>>> 6e9425b40f4480dadd64a9c80a67601379e49842
-Route::get('/customers', [CustomerViewController::class, 'index'])->name('customers.index');
+Route::get('/customers/create', [CustomerViewController::class, 'create'])
+    ->name('customers.create');
 
-Route::get('/customers/create', [CustomerViewController::class, 'create'])->name('customers.create');
+Route::post('/customers', [CustomerViewController::class, 'store'])
+    ->name('customers.store');
 
-Route::post('/customers', [CustomerViewController::class, 'store'])->name('customers.store');
+Route::get('/customers/{id}', [CustomerViewController::class, 'show'])
+    ->name('customers.show');
 
-Route::get('/customers/{id}', [CustomerViewController::class, 'show'])->name('customers.show');
+Route::get('/customers/{id}/edit', [CustomerViewController::class, 'edit'])
+    ->name('customers.edit');
 
-Route::get('/customers/{id}/edit', [CustomerViewController::class, 'edit'])->name('customers.edit');
+Route::put('/customers/{id}', [CustomerViewController::class, 'update'])
+    ->name('customers.update');
 
-Route::put('/customers/{id}', [CustomerViewController::class, 'update'])->name('customers.update');
+Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])
+    ->name('customers.destroy');
 
-<<<<<<< HEAD
-Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
-=======
-Route::delete('/customers/{id}', [CustomerViewController::class, 'destroy'])->name('customers.destroy');
->>>>>>> db96cdb383643bcb824dcaed2d674b796b703d92
->>>>>>> 6e9425b40f4480dadd64a9c80a67601379e49842
+Route::get('/customers/{customer}', [CustomerViewController::class, 'show'])
+    ->name('customers.show');

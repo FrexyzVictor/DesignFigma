@@ -1,48 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Pelanggan</title>
+
+    <link rel="stylesheet" href="{{ asset('css/customers/style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
 <body>
 
 <div class="container">
 
     <div class="header">
-        <h1>📊 Manajemen Pelanggan</h1>
 
-        <a href="{{ route('customers.create') }}" class="btn-primary">
-            + Tambah Pelanggan
-        </a>
-    </div>
+        <div>
 
-    @if(session('success'))
-        <div class="success">
-            {{ session('success') }}
-        </div>
-    @endif
+            <h1>Detail Pelanggan</h1>
 
-    @php
-        $total = $customers->count();
-        $aktif = $customers->where('status','aktif')->count();
-        $suspend = $customers->where('status','suspend')->count();
-        $berhenti = $customers->where('status','berhenti')->count();
-    @endphp
+            <p>
+                Informasi lengkap data pelanggan.
+            </p>
 
-    <div class="stats">
-
-        <div class="stat-card">
-            <h3>Total Pelanggan</h3>
-            <div class="number">{{ $total }}</div>
         </div>
 
-        <div class="stat-card">
-            <h3>Status Aktif</h3>
-            <div class="number">{{ $aktif }}</div>
-        </div>
+        <div class="actions">
 
-        <div class="stat-card">
-            <h3>Status Suspend</h3>
-            <div class="number">{{ $suspend }}</div>
-        </div>
+            <a href="{{ route('customers.index') }}" class="btn-small btn-view">
 
-        <div class="stat-card">
-            <h3>Status Berhenti</h3>
-            <div class="number">{{ $berhenti }}</div>
+                <i class="bi bi-arrow-left"></i>
+
+                Kembali
+
+            </a>
+
+            <a href="{{ route('customers.edit', $customer->id) }}" class="btn-small btn-edit">
+
+                <i class="bi bi-pencil-square"></i>
+
+                Edit
+
+            </a>
+
         </div>
 
     </div>
@@ -51,88 +57,56 @@
 
         <table>
 
-            <thead>
-
-                <tr>
-                    <th>No</th>
-                    <th>Nama Pelanggan</th>
-                    <th>Telepon</th>
-                    <th>Alamat</th>
-                    <th>Username PPPoE</th>
-                    <th>Status</th>
-                    <th>Sync Status</th>
-                    <th>Aksi</th>
-                </tr>
-
-            </thead>
-
             <tbody>
 
-            @forelse($customers as $customer)
+                <tr>
+                    <th width="220">ID</th>
+                    <td>{{ $customer->id }}</td>
+                </tr>
 
                 <tr>
+                    <th>Nama Pelanggan</th>
+                    <td>{{ $customer->nama }}</td>
+                </tr>
 
-                    <td>{{ $loop->iteration }}</td>
-
-                    <td>
-                        <strong>{{ $customer->nama }}</strong>
-                    </td>
-
+                <tr>
+                    <th>Telepon</th>
                     <td>{{ $customer->telepon }}</td>
+                </tr>
 
-                    <td>{{ $customer->alamat }}</td>
+                <tr>
+                    <th>Alamat</th>
+                    <td>{{ $customer->alamat ?: '-' }}</td>
+                </tr>
 
-                    <td>
-                        <code>{{ $customer->pppoe_username }}</code>
-                    </td>
+                <tr>
+                    <th>Username PPPoE</th>
+                    <td>{{ $customer->pppoe_username ?: '-' }}</td>
+                </tr>
 
+                <tr>
+                    <th>Status</th>
                     <td>
                         <span class="status {{ strtolower($customer->status) }}">
                             {{ strtoupper($customer->status) }}
                         </span>
                     </td>
-
-                    <td>{{ $customer->sync_status }}</td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                class="btn-small btn-view"
-                                onclick="viewCustomer({{ $customer->id }})">
-                                Lihat
-                            </button>
-
-                            <button
-                                class="btn-small btn-edit"
-                                onclick="editCustomer({{ $customer->id }})">
-                                Edit
-                            </button>
-
-                            <button
-                                class="btn-small btn-delete"
-                                onclick="deleteCustomer({{ $customer->id }})">
-                                Hapus
-                            </button>
-
-                        </div>
-
-                    </td>
-
                 </tr>
-
-            @empty
 
                 <tr>
-
-                    <td colspan="8" class="empty-state">
-                        Tidak ada data pelanggan
-                    </td>
-
+                    <th>Sync Status</th>
+                    <td>{{ $customer->sync_status }}</td>
                 </tr>
 
-            @endforelse
+                <tr>
+                    <th>Dibuat</th>
+                    <td>{{ $customer->created_at }}</td>
+                </tr>
+
+                <tr>
+                    <th>Terakhir Diubah</th>
+                    <td>{{ $customer->updated_at }}</td>
+                </tr>
 
             </tbody>
 
@@ -142,46 +116,5 @@
 
 </div>
 
-<script>
-
-function viewCustomer(id){
-    window.location.href="/customers/"+id;
-}
-
-function editCustomer(id){
-    window.location.href="/customers/"+id+"/edit";
-}
-
-function deleteCustomer(id){
-
-    if(!confirm("Yakin ingin menghapus pelanggan ini?")){
-        return;
-    }
-
-    const form=document.createElement("form");
-
-    form.method="POST";
-    form.action="/customers/"+id;
-
-    const token=document.createElement("input");
-    token.type="hidden";
-    token.name="_token";
-    token.value="{{ csrf_token() }}";
-
-    const method=document.createElement("input");
-    method.type="hidden";
-    method.name="_method";
-    method.value="DELETE";
-
-    form.appendChild(token);
-    form.appendChild(method);
-
-    document.body.appendChild(form);
-
-    form.submit();
-
-}
-
-</script>
-
 </body>
+</html>
