@@ -4,6 +4,7 @@ import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', () => {
   markDeviceType();
+  initThemeToggle();
   initHeaderScrollShadow();
   initStaggerAnimations();
   initCountUpStats();
@@ -13,6 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
   initMarkAllRead();
   initActiveNav();
 });
+
+/**
+ * Mode Gelap (di halaman Pengaturan). Kelas `dark` di <html> sudah diterapkan
+ * lebih dulu oleh script anti-flash di <head> (lihat layouts/app.blade.php),
+ * jadi di sini kita cuma perlu: (1) samakan tampilan toggle switch dengan
+ * kondisi tema saat ini, (2) tangani klik untuk ganti tema + simpan pilihan.
+ */
+function initThemeToggle() {
+  const toggle = document.querySelector('[data-toggle="dark_mode"]');
+  if (!toggle) return;
+
+  // Kondisi awal toggle mengikuti tema yang sudah aktif (bukan default dari server)
+  toggle.checked = document.documentElement.classList.contains('dark');
+
+  toggle.addEventListener('change', () => {
+    const isDark = toggle.checked;
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('gintara-theme', isDark ? 'dark' : 'light');
+    showToast(isDark ? 'Mode gelap diaktifkan' : 'Mode terang diaktifkan', 'primary');
+  });
+}
 
 /**
  * Deteksi device di sisi client (opsional) — hanya untuk kebutuhan JS

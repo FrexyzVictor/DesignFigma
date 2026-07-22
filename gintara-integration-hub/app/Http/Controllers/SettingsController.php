@@ -19,6 +19,12 @@ class SettingsController extends Controller
 
         $sections = [
             [
+                'label' => 'Tampilan',
+                'items' => [
+                    ['label' => 'Mode Gelap', 'icon' => 'moon', 'tone' => 'primary', 'type' => 'toggle', 'key' => 'dark_mode'],
+                ],
+            ],
+            [
                 'label' => 'Akun',
                 'items' => [
                     ['label' => 'Informasi Pribadi', 'icon' => 'user', 'tone' => 'primary', 'route' => '#'],

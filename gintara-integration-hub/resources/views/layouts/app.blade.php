@@ -5,11 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Gintara Net')</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/Gintara.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('images/Gintara.png') }}">
+
+ 
+  <script>
+    (function () {
+      
+      if (localStorage.getItem('gintara-theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-surface min-h-screen text-ink relative overflow-x-hidden">
 
-  {{-- Latar belakang gelembung mengambang — dekoratif saja, tidak mengganggu klik (pointer-events-none) --}}
+ 
   <div class="g-bg-blobs" aria-hidden="true">
     <span class="g-blob g-blob--1"></span>
     <span class="g-blob g-blob--2"></span>
@@ -21,9 +34,8 @@
 
     {{-- Sidebar: disembunyikan di HP, tampil mulai layar besar (lg = 1024px+) --}}
     <aside class="hidden lg:flex w-64 shrink-0 bg-white border-r border-gray-100 flex-col py-6 px-4 sticky top-0 h-screen z-10">
-      <div class="flex items-center gap-2 px-2 mb-8">
-        <span class="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center font-bold">G</span>
-        <span class="font-bold text-ink">Gintara Net</span>
+      <div class="flex items-center px-2 mb-8">
+        <img src="{{ asset('images/logo.png') }}" alt="Gintara Net" class="h-7 w-auto">
       </div>
 
       <nav class="flex flex-col gap-1">
@@ -36,7 +48,7 @@
         <a href="{{ route('apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
-        <a href="#" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+        <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>

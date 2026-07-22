@@ -146,6 +146,57 @@
 }
 
 @layer components {
+  /* ================================================================
+     MODE GELAP
+     Daripada menambah "dark:" di ratusan tempat di file Blade,
+     override di sini menimpa langsung utility class dasar yang sudah
+     dipakai di seluruh halaman (bg-white, bg-surface, text-ink, dst)
+     ketika elemen <html> punya class "dark" (diatur oleh app.js /
+     script anti-flash di <head>). Jadi 1 saklar, seluruh halaman ikut.
+     ================================================================ */
+  .dark body { @apply bg-[#0F1220] text-[#E5E7F0]; }
+
+  .dark .bg-surface { @apply bg-[#0F1220]; }
+  .dark .bg-white,
+  .dark .bg-card    { @apply bg-[#171B2C]; }
+
+  .dark .text-ink      { @apply text-[#E5E7F0]; }
+  .dark .text-ink-soft { @apply text-[#8A90A6]; }
+
+  .dark .border-gray-100,
+  .dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+    @apply border-[#262B40];
+  }
+
+  .dark .bg-gray-100 { @apply bg-[#232840]; }
+  .dark .bg-gray-200 { @apply bg-[#2C3350]; }
+
+  .dark .shadow-card,
+  .dark .shadow-card-lg {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark .bg-primary-50  { @apply bg-primary-500/15; }
+  .dark .bg-primary-100 { @apply bg-primary-500/25; }
+
+  .dark .bg-success-bg { @apply bg-success/15; }
+  .dark .bg-warning-bg { @apply bg-warning/15; }
+  .dark .bg-danger-bg  { @apply bg-danger/15;  }
+
+  .dark input::placeholder { color: #5B6079; }
+
+  .dark .g-bottom-nav { @apply bg-[#171B2C]/95 border-[#262B40]; }
+  .dark .g-toggle-thumb { background-color: #E5E7F0; }
+
+  /* Gelembung dekoratif dibuat lebih redup di mode gelap supaya tidak silau */
+  .dark .g-blob { opacity: 0.18; }
+
+  /* Scrollbar tipis menyesuaikan */
+  .dark ::-webkit-scrollbar-thumb { @apply bg-[#2C3350]; }
+  .dark ::-webkit-scrollbar-thumb:hover { @apply bg-[#3A4166]; }
+}
+
+@layer components {
   /* Kartu putih dasar dipakai di mobile & desktop */
   .g-card {
     @apply bg-card rounded-card shadow-card p-4 transition-shadow duration-300;

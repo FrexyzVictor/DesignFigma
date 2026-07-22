@@ -6,7 +6,7 @@
 <div class="lg:max-w-2xl">
 
   <div class="mb-4 lg:mb-6">
-    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium">Preferensi</p>
+    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium"></p>
     <h1 class="text-lg lg:text-2xl font-bold text-ink">Pengaturan</h1>
   </div>
 
