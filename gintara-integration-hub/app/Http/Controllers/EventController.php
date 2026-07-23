@@ -2,50 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
     public function index(Request $request)
     {
-        $events = [
-            [
-                'title' => 'Unggah Arsip Log',
-                'ref' => 'EVT-991',
-                'source' => 'WifiKula',
-                'time' => '12 menit lalu',
-                'status' => 'tertunda',
-                'icon' => 'upload'
-            ],
-            [
-                'title' => 'Kegagalan API Gateway',
-                'ref' => 'EVT-990',
-                'source' => 'ERP Perusahaan',
-                'time' => '45 menit lalu',
-                'status' => 'gagal',
-                'icon' => 'alert'
-            ],
-            [
-                'title' => 'Sinkronisasi Audit Keamanan',
-                'ref' => 'EVT-988',
-                'source' => 'Layanan Autentikasi',
-                'time' => '2 jam lalu',
-                'status' => 'berhasil',
-                'icon' => 'shield'
-            ],
-            [
-                'title' => 'Pembersihan Database',
-                'ref' => 'EVT-985',
-                'source' => 'Admin Inti',
-                'time' => '5 jam lalu',
-                'status' => 'berhasil',
-                'icon' => 'database'
-            ],
-        ];
+        $events = Event::latest()->get()->map(function ($event) {
 
-        return view('dashboard.events', [
+            return [
+                'id' => $event->id,
+                'title' => $event->nama,
+                'ref' => 'EVT-' . str_pad($event->id, 3, '0', STR_PAD_LEFT),
+                'source' => $event->penyelenggara,
+                'time' => Carbon::parse($event->created_at)->diffForHumans(),
+                'status' => match ($event->status) {
+                    'Aktif' => 'berhasil',
+                    'Selesai' => 'tertunda',
+                    'Dibatalkan' => 'gagal',
+                    default => 'tertunda',
+                },
+                'icon' => match ($event->status) {
+                    'Aktif' => 'calendar',
+                    'Selesai' => 'check-circle',
+                    'Dibatalkan' => 'alert',
+                    default => 'calendar',
+                },
+            ];
+
+        });
+
+        return view('dashboard.events.events', [
             'events' => $events,
-            'dateRange' => 'Jul 09, 2026 - Jul 10, 2026',
+            'dateRange' => now()->subDays(30)->format('d M Y') .
+                ' - ' .
+                now()->format('d M Y'),
         ]);
     }
 }

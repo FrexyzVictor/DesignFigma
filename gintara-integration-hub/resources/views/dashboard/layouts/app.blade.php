@@ -59,15 +59,16 @@
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
         <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+        <a href="{{ route('dashboard.sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>
 
       <div class="mt-auto">
         <a href="{{ route('dashboard.settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-        </a>
-    </aside>
 
+          @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
+    </aside>
     {{-- Konten utama --}}
     <div class="flex-1 flex flex-col min-w-0 pb-24 lg:pb-0">
 
@@ -120,7 +121,7 @@
 
   {{-- Bottom nav: tampil di HP saja, hilang otomatis di layar besar --}}
   <nav class="g-bottom-nav lg:hidden">
-    <a href="{{ route('dashboard.index') }}" data-nav-link>
+    <a href="{{ route('dashboard.dashboard') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5'])
       </span>

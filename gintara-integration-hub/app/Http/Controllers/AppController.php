@@ -47,6 +47,7 @@ class AppController extends Controller
             ],
         ];
 
+        return view('dashboard.apps.apps', ['apps' => $apps]);
         return view('dashboard.apps', [
             'apps' => $apps
         ]);
