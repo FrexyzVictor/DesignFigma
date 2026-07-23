@@ -34,7 +34,7 @@ class EventController extends Controller
 
         });
 
-        return view('dashboard.events', [
+        return view('dashboard.events.events', [
             'events' => $events,
             'dateRange' => now()->subDays(30)->format('d M Y') .
                 ' - ' .
