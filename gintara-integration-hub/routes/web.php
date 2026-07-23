@@ -66,3 +66,5 @@ Route::prefix('events')->name('events.')->group(function () {
         ->name('destroy');
 
 });
+
+require __DIR__.'/auth.php'; 
