@@ -11,19 +11,26 @@ class SettingsController extends Controller
         $user = $request->user();
 
         $profile = [
-            'name' => $user->name ?? 'Binn Admin',
-            'email' => $user->email ?? 'admin@gintara.net',
+            'name'   => $user->name ?? 'Binn Admin',
+            'email'  => $user->email ?? 'admin@gintara.net',
             'avatar' => $user->avatar ?? null,
-            'plan' => 'FREE',
+            'plan'   => 'FREE',
         ];
 
         $sections = [
             [
                 'label' => 'Tampilan',
                 'items' => [
-                    ['label' => 'Mode Gelap', 'icon' => 'moon', 'tone' => 'primary', 'type' => 'toggle', 'key' => 'dark_mode'],
+                    [
+                        'label' => 'Mode Gelap',
+                        'icon' => 'moon',
+                        'tone' => 'primary',
+                        'type' => 'toggle',
+                        'key' => 'dark_mode',
+                    ],
                 ],
             ],
+
             [
                 'label' => 'Akun',
                 'items' => [
@@ -31,16 +38,17 @@ class SettingsController extends Controller
                         'label' => 'Informasi Pribadi',
                         'icon' => 'user',
                         'tone' => 'primary',
-                        'route' => '#'
+                        'route' => '#',
                     ],
                     [
                         'label' => 'Preferensi Sinkronisasi',
                         'icon' => 'sync',
                         'tone' => 'primary',
-                        'route' => '#'
+                        'route' => '#',
                     ],
                 ],
             ],
+
             [
                 'label' => 'Privasi & Keamanan',
                 'items' => [
@@ -48,10 +56,11 @@ class SettingsController extends Controller
                         'label' => 'Izin',
                         'icon' => 'shield',
                         'tone' => 'success',
-                        'route' => '#'
+                        'route' => '#',
                     ],
                 ],
             ],
+
             [
                 'label' => 'Notifikasi',
                 'items' => [
@@ -60,10 +69,11 @@ class SettingsController extends Controller
                         'icon' => 'bell',
                         'tone' => 'warning',
                         'type' => 'toggle',
-                        'checked' => false
+                        'checked' => false,
                     ],
                 ],
             ],
+
             [
                 'label' => 'Dukungan',
                 'items' => [
@@ -71,23 +81,38 @@ class SettingsController extends Controller
                         'label' => 'Pusat Bantuan',
                         'icon' => 'help',
                         'tone' => 'danger',
-                        'route' => '#'
+                        'route' => '#',
                     ],
                     [
                         'label' => 'Laporkan Masalah',
                         'icon' => 'alert-circle',
                         'tone' => 'danger',
-                        'route' => '#'
+                        'route' => '#',
                     ],
                 ],
             ],
         ];
 
+
         return view('dashboard.settings.settings', [
-            'profile' => $profile,
-            'sections' => $sections,
-            'appVersion' => '2.4.1 (build 882)',
-            'logoutRoute' => '#',
-        ]);
+    'user' => $user,
+    'greeting' => $this->greetingByTime(),
+    'profile' => $profile,
+    'sections' => $sections,
+    'appVersion' => '2.4.1 (build 882)',
+    'logoutRoute' => route('logout'),
+]);
+    }
+
+    protected function greetingByTime(): string
+    {
+        $hour = now()->hour;
+
+        return match (true) {
+            $hour < 11 => 'Selamat Pagi',
+            $hour < 15 => 'Selamat Siang',
+            $hour < 18 => 'Selamat Sore',
+            default => 'Selamat Malam',
+        };
     }
 }

@@ -48,7 +48,7 @@
         <a href="{{ route('dashboard.apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
-        <a href="{{ route('dashboard.sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+        <a href="#" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>
@@ -112,7 +112,7 @@
 
   {{-- Bottom nav: tampil di HP saja, hilang otomatis di layar besar --}}
   <nav class="g-bottom-nav lg:hidden">
-    <a href="{{ route('dashboard.dashboard') }}" data-nav-link>
+    <a href="{{ route('dashboard.index') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5'])
       </span>
