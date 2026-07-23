@@ -39,7 +39,6 @@
       </div>
 
       <nav class="flex flex-col gap-1">
-<<<<<<< HEAD
         <a href="{{ route('dashboard.index') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
         </a>
@@ -50,7 +49,6 @@
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
         <a href="#" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-=======
         <a href="{{ route('dashboard') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
         </a>
@@ -61,20 +59,13 @@
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
         <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
->>>>>>> 49861d242f046c724dd80a6d6bd7a79575525042
           @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>
 
       <div class="mt-auto">
-<<<<<<< HEAD
         <a href="{{ route('dashboard.settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-=======
-        <a href="{{ route('settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
->>>>>>> 49861d242f046c724dd80a6d6bd7a79575525042
-          @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
         </a>
-      </div>
     </aside>
 
     {{-- Konten utama --}}
