@@ -10,7 +10,7 @@
 <div class="g-card flex flex-col gap-3">
   <div class="flex items-center justify-between">
     <span class="w-9 h-9 rounded-xl flex items-center justify-center {{ $toneBg }}">
-      @include('partials.icon', ['name' => $stat['icon'], 'class' => 'w-4 h-4'])
+      @include('dashboard.partials.icon', ['name' => $stat['icon'], 'class' => 'w-4 h-4'])
     </span>
     @if(!empty($stat['trend']))
       <span class="text-xs font-semibold {{ ($stat['trendUp'] ?? true) ? 'text-success' : 'text-danger' }}">

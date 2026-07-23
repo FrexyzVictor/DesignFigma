@@ -27,7 +27,7 @@
 
   <div class="flex items-start gap-3 pr-16 lg:pr-0">
     <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 {{ $iconTone }}">
-      @include('partials.icon', ['name' => $event['icon'], 'class' => 'w-5 h-5'])
+      @include('dashboard.partials.icon', ['name' => $event['icon'], 'class' => 'w-5 h-5'])
     </span>
     <div class="min-w-0">
       <p class="text-sm font-semibold text-ink truncate">{{ $event['title'] }}</p>
@@ -37,7 +37,7 @@
       <button type="button"
               onclick="return confirm('Hapus event ini?')"
               class="lg:hidden inline-flex items-center gap-1 text-xs font-semibold text-danger mt-2">
-        @include('partials.icon', ['name' => 'trash', 'class' => 'w-3.5 h-3.5'])
+        @include('dashboard.partials.icon', ['name' => 'trash', 'class' => 'w-3.5 h-3.5'])
         Hapus
       </button>
     </div>
@@ -49,7 +49,7 @@
   <button type="button"
           onclick="return confirm('Hapus event ini?')"
           class="hidden lg:inline-flex items-center gap-1 text-xs font-semibold text-danger lg:order-5">
-    @include('partials.icon', ['name' => 'trash', 'class' => 'w-3.5 h-3.5'])
+    @include('dashboard.partials.icon', ['name' => 'trash', 'class' => 'w-3.5 h-3.5'])
     Hapus
   </button>
 </div>

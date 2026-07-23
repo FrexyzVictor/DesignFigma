@@ -11,7 +11,7 @@ class SettingsController extends Controller
         $user = $request->user();
 
         $profile = [
-            'name' => $user->name ?? 'Diyo Admin',
+            'name' => $user->name ?? 'Binn Admin',
             'email' => $user->email ?? 'admin@gintara.net',
             'avatar' => $user->avatar ?? null,
             'plan' => 'FREE',
@@ -52,7 +52,7 @@ class SettingsController extends Controller
             ],
         ];
 
-        return view('settings', [
+        return view('dashboard.settings', [
             'profile' => $profile,
             'sections' => $sections,
             'appVersion' => '2.4.1 (build 882)',

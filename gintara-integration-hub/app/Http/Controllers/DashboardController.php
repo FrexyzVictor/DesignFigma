@@ -37,7 +37,7 @@ class DashboardController extends Controller
             ],
         ];
 
-        return view('dashboard', $data);
+        return view('dashboard.dashboard', $data);
     }
 
     protected function greetingByTime(): string

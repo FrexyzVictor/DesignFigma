@@ -16,7 +16,7 @@ class EventController extends Controller
             ['title' => 'Pembersihan Database', 'ref' => 'EVT-985', 'source' => 'Admin Inti', 'time' => '5 jam lalu', 'status' => 'berhasil', 'icon' => 'database'],
         ];
 
-        return view('events', [
+        return view('dashboard.events', [
             'events' => $events,
             'dateRange' => 'Jul 09, 2026 - Jul 10, 2026',
         ]);

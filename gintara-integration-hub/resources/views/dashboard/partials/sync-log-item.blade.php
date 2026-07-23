@@ -23,7 +23,7 @@
   <div class="flex items-start justify-between gap-2 lg:contents">
     <div class="flex items-center gap-3 min-w-0">
       <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 {{ $iconTone }}">
-        @include('partials.icon', ['name' => $log['icon'], 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => $log['icon'], 'class' => 'w-5 h-5'])
       </span>
       <div class="min-w-0">
         <p class="text-sm font-semibold text-ink truncate">{{ $log['app'] }}</p>

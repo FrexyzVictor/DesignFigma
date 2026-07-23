@@ -48,6 +48,6 @@ class NotificationController extends Controller
             ],
         ];
 
-        return view('notifications', ['groups' => $groups]);
+        return view('dashboard.notifications', ['groups' => $groups]);
     }
 }

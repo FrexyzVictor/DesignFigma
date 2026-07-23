@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 @section('title', 'Log Sinkronisasi - Gintara Net')
 
 @section('content')
@@ -10,7 +10,7 @@
   </div>
   <button type="button" data-action="refresh" data-ripple
           class="g-ripple-container hidden lg:inline-flex items-center gap-2 bg-white border border-gray-100 shadow-card rounded-xl px-4 py-2.5 text-sm font-medium text-ink hover:border-primary-100 hover:text-primary transition">
-    <span data-refresh-icon>@include('partials.icon', ['name' => 'refresh', 'class' => 'w-4 h-4'])</span>
+    <span data-refresh-icon>@include('dashboard.partials.icon', ['name' => 'refresh', 'class' => 'w-4 h-4'])</span>
     Sinkronkan Sekarang
   </button>
 </div>
@@ -19,7 +19,7 @@
 
   {{-- Search --}}
   <label class="flex items-center gap-2 bg-surface lg:bg-white lg:border lg:border-gray-100 rounded-xl px-3 py-2.5 mb-4">
-    @include('partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
+    @include('dashboard.partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
     <input type="text" placeholder="Cari aplikasi atau referensi log..."
            class="w-full text-sm bg-transparent outline-none placeholder:text-ink-soft/70">
   </label>
@@ -64,7 +64,7 @@
   {{-- Daftar log: kartu bertumpuk di mobile, baris tabel di desktop --}}
   <div class="flex flex-col gap-3 lg:gap-0 lg:bg-white lg:rounded-card lg:shadow-card lg:px-5" data-stagger>
     @forelse($logs as $log)
-      @include('partials.sync-log-item', ['log' => $log])
+      @include('dashboard.partials.sync-log-item', ['log' => $log])
     @empty
       <p class="text-sm text-ink-soft text-center py-10">Belum ada log sinkronisasi.</p>
     @endforelse

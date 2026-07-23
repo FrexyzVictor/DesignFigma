@@ -40,22 +40,22 @@
 
       <nav class="flex flex-col gap-1">
         <a href="{{ route('dashboard') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
+          @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
         </a>
         <a href="{{ route('events') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5']) Event
+          @include('dashboard.partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5']) Event
         </a>
         <a href="{{ route('apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
+          @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
         <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
+          @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>
 
       <div class="mt-auto">
         <a href="{{ route('settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
+          @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
         </a>
       </div>
     </aside>
@@ -83,14 +83,14 @@
         </div>
 
         <label class="hidden lg:flex items-center gap-2 bg-surface rounded-xl px-3 py-2 w-96">
-          @include('partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
+          @include('dashboard.partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
           <input type="text" placeholder="Cari integrasi atau aplikasi..."
                  class="w-full text-sm bg-transparent outline-none placeholder:text-ink-soft/70">
         </label>
 
         <div class="flex items-center gap-4">
           <a href="{{ route('notifications') }}" class="relative w-10 h-10 rounded-full bg-white lg:bg-surface shadow-card lg:shadow-none flex items-center justify-center text-ink-soft">
-            @include('partials.icon', ['name' => 'bell', 'class' => 'w-5 h-5'])
+            @include('dashboard.partials.icon', ['name' => 'bell', 'class' => 'w-5 h-5'])
             <span class="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-danger"></span>
           </a>
           <div class="hidden lg:flex items-center gap-2">
@@ -114,25 +114,25 @@
   <nav class="g-bottom-nav lg:hidden">
     <a href="{{ route('dashboard') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
-        @include('partials.icon', ['name' => 'home', 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5'])
       </span>
       Beranda
     </a>
     <a href="{{ route('events') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
-        @include('partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5'])
       </span>
       Event
     </a>
     <a href="{{ route('apps') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
-        @include('partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5'])
       </span>
       Aplikasi
     </a>
     <a href="{{ route('settings') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
-        @include('partials.icon', ['name' => 'user', 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5'])
       </span>
       Profil
     </a>

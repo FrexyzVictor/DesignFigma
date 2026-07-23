@@ -21,7 +21,7 @@
   <div class="flex items-start justify-between gap-2">
     <div class="flex items-center gap-3 min-w-0">
       <span class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 {{ $iconTone }}">
-        @include('partials.icon', ['name' => $app['icon'], 'class' => 'w-5 h-5'])
+        @include('dashboard.partials.icon', ['name' => $app['icon'], 'class' => 'w-5 h-5'])
       </span>
       <div class="min-w-0">
         <p class="font-semibold text-sm text-ink truncate">{{ $app['name'] }}</p>

@@ -22,7 +22,7 @@ class SyncLogController extends Controller
             'failed' => collect($logs)->where('status', 'gagal')->count(),
         ];
 
-        return view('sync-logs', ['logs' => $logs, 'summary' => $summary]);
+        return view('dashboard.sync-logs', ['logs' => $logs, 'summary' => $summary]);
     }
 }
     

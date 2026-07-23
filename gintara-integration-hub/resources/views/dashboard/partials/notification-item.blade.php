@@ -9,7 +9,7 @@
 
 <div class="g-card flex gap-3">
   <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 {{ $iconTone }}">
-    @include('partials.icon', ['name' => $notif['icon'], 'class' => 'w-5 h-5'])
+    @include('dashboard.partials.icon', ['name' => $notif['icon'], 'class' => 'w-5 h-5'])
   </span>
   <div class="min-w-0 flex-1">
     <div class="flex items-center gap-2">
