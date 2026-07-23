@@ -66,3 +66,4 @@ Route::prefix('events')->name('events.')->group(function () {
         ->name('destroy');
 
 });
+.
