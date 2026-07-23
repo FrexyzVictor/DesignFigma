@@ -32,7 +32,7 @@
         </div>
 
         <!-- <a href="{{ route('customers.create') }}" class="btn-primary"> -->
-        <a href="http://127.0.0.1:8001/dashboard/" class="btn-primary">
+        <!-- <a href="http://127.0.0.1:8001/dashboard/" class="btn-primary"> -->
         <a href="{{ route('customers.create') }}" class="btn-primary">
 
             <i class="bi bi-plus-circle"></i>

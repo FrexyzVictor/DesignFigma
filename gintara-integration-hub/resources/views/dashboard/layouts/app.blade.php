@@ -48,17 +48,6 @@
         <a href="{{ route('dashboard.apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
-        <a href="#" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-        <a href="{{ route('dashboard') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
-        </a>
-        <a href="{{ route('events') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('dashboard.partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5']) Event
-        </a>
-        <a href="{{ route('apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-          @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
-        </a>
-        <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
         <a href="{{ route('dashboard.sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
@@ -66,9 +55,11 @@
 
       <div class="mt-auto">
         <a href="{{ route('dashboard.settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
-
           @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
+        </a>
+      </div>
     </aside>
+
     {{-- Konten utama --}}
     <div class="flex-1 flex flex-col min-w-0 pb-24 lg:pb-0">
 
