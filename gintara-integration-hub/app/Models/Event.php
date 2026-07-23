@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'nama',
         'tanggal',
@@ -13,5 +16,9 @@ class Event extends Model
         'penyelenggara',
         'status',
         'deskripsi',
+    ];
+
+    protected $casts = [
+        'tanggal' => 'date',
     ];
 }
