@@ -21,36 +21,67 @@ class SettingsController extends Controller
             [
                 'label' => 'Akun',
                 'items' => [
-                    ['label' => 'Informasi Pribadi', 'icon' => 'user', 'tone' => 'primary', 'route' => '#'],
-                    ['label' => 'Preferensi Sinkronisasi', 'icon' => 'sync', 'tone' => 'primary', 'route' => '#'],
+                    [
+                        'label' => 'Informasi Pribadi',
+                        'icon' => 'user',
+                        'tone' => 'primary',
+                        'route' => '#'
+                    ],
+                    [
+                        'label' => 'Preferensi Sinkronisasi',
+                        'icon' => 'sync',
+                        'tone' => 'primary',
+                        'route' => '#'
+                    ],
                 ],
             ],
             [
                 'label' => 'Privasi & Keamanan',
                 'items' => [
-                    ['label' => 'Izin', 'icon' => 'shield', 'tone' => 'success', 'route' => '#'],
+                    [
+                        'label' => 'Izin',
+                        'icon' => 'shield',
+                        'tone' => 'success',
+                        'route' => '#'
+                    ],
                 ],
             ],
             [
                 'label' => 'Notifikasi',
                 'items' => [
-                    ['label' => 'Notifikasi Push', 'icon' => 'bell', 'tone' => 'warning', 'type' => 'toggle', 'checked' => false],
+                    [
+                        'label' => 'Notifikasi Push',
+                        'icon' => 'bell',
+                        'tone' => 'warning',
+                        'type' => 'toggle',
+                        'checked' => false
+                    ],
                 ],
             ],
             [
                 'label' => 'Dukungan',
                 'items' => [
-                    ['label' => 'Pusat Bantuan', 'icon' => 'help', 'tone' => 'danger', 'route' => '#'],
-                    ['label' => 'Laporkan Masalah', 'icon' => 'alert-circle', 'tone' => 'danger', 'route' => '#'],
+                    [
+                        'label' => 'Pusat Bantuan',
+                        'icon' => 'help',
+                        'tone' => 'danger',
+                        'route' => '#'
+                    ],
+                    [
+                        'label' => 'Laporkan Masalah',
+                        'icon' => 'alert-circle',
+                        'tone' => 'danger',
+                        'route' => '#'
+                    ],
                 ],
             ],
         ];
 
-        return view('settings', [
+        return view('dashboard.settings', [
             'profile' => $profile,
             'sections' => $sections,
             'appVersion' => '2.4.1 (build 882)',
-            'logoutRoute' => '#', // ganti route('logout') setelah auth siap
+            'logoutRoute' => '#',
         ]);
     }
 }

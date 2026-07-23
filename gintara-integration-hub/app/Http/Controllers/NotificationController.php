@@ -8,7 +8,6 @@ class NotificationController extends Controller
 {
     public function index(Request $request)
     {
-        // Ganti dengan query asli, mis. auth()->user()->notifications()->latest()->get()->groupBy(...)
         $groups = [
             'Hari Ini' => [
                 [
@@ -28,6 +27,7 @@ class NotificationController extends Controller
                     'read' => false,
                 ],
             ],
+
             'Kemarin' => [
                 [
                     'title' => 'Jadwal pemeliharaan',
@@ -48,6 +48,8 @@ class NotificationController extends Controller
             ],
         ];
 
-        return view('notifications', ['groups' => $groups]);
+        return view('dashboard.notifications', [
+            'groups' => $groups
+        ]);
     }
 }
