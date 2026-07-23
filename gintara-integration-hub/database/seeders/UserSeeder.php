@@ -2,31 +2,32 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Create Super Admin user
-        User::create([
-            'name' => 'Super Admin',
-            'email' => 'superadmin@gintara.com',
-            'password' => bcrypt('password123'),
-            'role' => 'super_admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'superadmin@gintara.com'],
+            [
+                'name' => 'Super Admin',
+                'password' => Hash::make('password123'),
+                'role' => 'super_admin',
+                'email_verified_at' => now(),
+            ]
+        );
 
-        // Create Admin user
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gintara.com',
-            'password' => bcrypt('password123'),
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@gintara.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+                'email_verified_at' => now(),
+            ]
+        );
     }
 }
