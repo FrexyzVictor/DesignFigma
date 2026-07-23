@@ -93,18 +93,15 @@ class SettingsController extends Controller
             ],
         ];
 
-        return view('dashboard.settings', [
-            'user' => $user,
-            'greeting' => $this->greetingByTime(),
 
         return view('dashboard.settings.settings', [
-            'profile' => $profile,
-            'sections' => $sections,
-
-            'appVersion' => '2.4.1 (build 882)',
-
-            'logoutRoute' => route('logout'),
-        ]);
+    'user' => $user,
+    'greeting' => $this->greetingByTime(),
+    'profile' => $profile,
+    'sections' => $sections,
+    'appVersion' => '2.4.1 (build 882)',
+    'logoutRoute' => route('logout'),
+]);
     }
 
     protected function greetingByTime(): string

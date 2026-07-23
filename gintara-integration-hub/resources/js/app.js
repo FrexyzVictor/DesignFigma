@@ -1,20 +1,35 @@
-<<<<<<< HEAD
-=======
 import './bootstrap';
 // Jika project kamu sudah punya resources/js/bootstrap.js (axios, echo, dll),
 // import di sini: import './bootstrap';
 // Jika project kamu sudah punya resources/js/bootstrap.js (axios, echo, dll),
 // import di sini: import './bootstrap';
->>>>>>> 587fbbf538d652fa21935511d92a9091d378a0ba
 
+document.addEventListener('DOMContentLoaded', () => {
+  markDeviceType();
+  initThemeToggle();
+  initHeaderScrollShadow();
+  initStaggerAnimations();
+  initCountUpStats();
+  initRipple();
+  initRefreshButtons();
+  initFilterPills();
+  initMarkAllRead();
+  initActiveNav();
+});
 
-import Alpine from 'alpinejs';
+/**
+ * Mode Gelap (di halaman Pengaturan). Kelas `dark` di <html> sudah diterapkan
+ * lebih dulu oleh script anti-flash di <head> (lihat layouts/app.blade.php),
+ * jadi di sini kita cuma perlu: (1) samakan tampilan toggle switch dengan
+ * kondisi tema saat ini, (2) tangani klik untuk ganti tema + simpan pilihan.
+ */
+function initThemeToggle() {
+  const toggle = document.querySelector('[data-toggle="dark_mode"]');
+  if (!toggle) return;
 
-window.Alpine = Alpine;
+  // Kondisi awal toggle mengikuti tema yang sudah aktif (bukan default dari server)
+  toggle.checked = document.documentElement.classList.contains('dark');
 
-<<<<<<< HEAD
-Alpine.start();
-=======
   toggle.addEventListener('change', () => {
     const isDark = toggle.checked;
     document.documentElement.classList.toggle('dark', isDark);
@@ -256,4 +271,3 @@ function showToast(message, tone = 'primary') {
     toast.addEventListener('animationend', () => toast.remove(), { once: true });
   }, 2200);
 }
->>>>>>> 587fbbf538d652fa21935511d92a9091d378a0ba
