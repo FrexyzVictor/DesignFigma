@@ -97,6 +97,7 @@ class SettingsController extends Controller
             'user' => $user,
             'greeting' => $this->greetingByTime(),
 
+        return view('dashboard.settings.settings', [
             'profile' => $profile,
             'sections' => $sections,
 
