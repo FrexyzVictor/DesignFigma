@@ -29,6 +29,68 @@
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+  /* ===== Latar gelembung mengambang ===== */
+  .g-bg-blobs {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .g-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(50px);
+    opacity: 0.4;
+    will-change: transform;
+  }
+  .g-blob--1 {
+    width: 280px; height: 280px;
+    top: -60px; left: -60px;
+    background: radial-gradient(circle at 30% 30%, #3B6DF4, transparent 70%);
+    animation: gBlobFloatA 20s ease-in-out infinite;
+  }
+  .g-blob--2 {
+    width: 240px; height: 240px;
+    top: 55%; right: -70px;
+    background: radial-gradient(circle at 30% 30%, #5C86F5, transparent 70%);
+    animation: gBlobFloatB 24s ease-in-out infinite;
+  }
+  .g-blob--3 {
+    width: 190px; height: 190px;
+    top: 30%; left: 65%;
+    background: radial-gradient(circle at 30% 30%, #2952DE, transparent 70%);
+    animation: gBlobFloatC 17s ease-in-out infinite;
+  }
+  .g-blob--4 {
+    width: 220px; height: 220px;
+    bottom: -60px; left: 15%;
+    background: radial-gradient(circle at 30% 30%, #1F3FB0, transparent 70%);
+    animation: gBlobFloatA 28s ease-in-out infinite reverse;
+  }
+  @keyframes gBlobFloatA {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(50px, 40px) scale(1.1); }
+  }
+  @keyframes gBlobFloatB {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-40px, -50px) scale(0.92); }
+  }
+  @keyframes gBlobFloatC {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-60px, 30px) scale(1.12); }
+  }
+  /* Di HP, gelembung dikecilkan supaya tidak makan banyak ruang/performa */
+  @media (max-width: 767px) {
+    .g-blob { filter: blur(36px); opacity: 0.3; }
+    .g-blob--1, .g-blob--2, .g-blob--4 { width: 160px; height: 160px; }
+    .g-blob--3 { width: 130px; height: 130px; }
+  }
+  /* Hormati preferensi pengguna yang sensitif terhadap gerakan */
+  @media (prefers-reduced-motion: reduce) {
+    .g-blob { animation: none !important; }
+  }
+
   /* Container relatif untuk efek ripple dari app.js */
   .g-ripple-container { @apply relative overflow-hidden; }
   .g-ripple {
@@ -81,6 +143,57 @@
     from { opacity: 1; transform: translateY(0) scale(1); }
     to   { opacity: 0; transform: translateY(8px) scale(.97); }
   }
+}
+
+@layer components {
+  /* ================================================================
+     MODE GELAP
+     Daripada menambah "dark:" di ratusan tempat di file Blade,
+     override di sini menimpa langsung utility class dasar yang sudah
+     dipakai di seluruh halaman (bg-white, bg-surface, text-ink, dst)
+     ketika elemen <html> punya class "dark" (diatur oleh app.js /
+     script anti-flash di <head>). Jadi 1 saklar, seluruh halaman ikut.
+     ================================================================ */
+  .dark body { @apply bg-[#0F1220] text-[#E5E7F0]; }
+
+  .dark .bg-surface { @apply bg-[#0F1220]; }
+  .dark .bg-white,
+  .dark .bg-card    { @apply bg-[#171B2C]; }
+
+  .dark .text-ink      { @apply text-[#E5E7F0]; }
+  .dark .text-ink-soft { @apply text-[#8A90A6]; }
+
+  .dark .border-gray-100,
+  .dark .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
+    @apply border-[#262B40];
+  }
+
+  .dark .bg-gray-100 { @apply bg-[#232840]; }
+  .dark .bg-gray-200 { @apply bg-[#2C3350]; }
+
+  .dark .shadow-card,
+  .dark .shadow-card-lg {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark .bg-primary-50  { @apply bg-primary-500/15; }
+  .dark .bg-primary-100 { @apply bg-primary-500/25; }
+
+  .dark .bg-success-bg { @apply bg-success/15; }
+  .dark .bg-warning-bg { @apply bg-warning/15; }
+  .dark .bg-danger-bg  { @apply bg-danger/15;  }
+
+  .dark input::placeholder { color: #5B6079; }
+
+  .dark .g-bottom-nav { @apply bg-[#171B2C]/95 border-[#262B40]; }
+  .dark .g-toggle-thumb { background-color: #E5E7F0; }
+
+  /* Gelembung dekoratif dibuat lebih redup di mode gelap supaya tidak silau */
+  .dark .g-blob { opacity: 0.18; }
+
+  /* Scrollbar tipis menyesuaikan */
+  .dark ::-webkit-scrollbar-thumb { @apply bg-[#2C3350]; }
+  .dark ::-webkit-scrollbar-thumb:hover { @apply bg-[#3A4166]; }
 }
 
 @layer components {

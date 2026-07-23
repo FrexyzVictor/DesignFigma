@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 @section('title', 'Notifikasi - Gintara Net')
 
 @section('content')
@@ -11,13 +11,13 @@
       <h1 class="text-lg lg:text-2xl font-bold text-ink">Notifikasi</h1>
     </div>
     <button type="button" class="w-10 h-10 rounded-full bg-white shadow-card lg:shadow-none lg:bg-surface flex items-center justify-center text-ink-soft">
-      @include('partials.icon', ['name' => 'sliders', 'class' => 'w-5 h-5'])
+      @include('dashboard.partials.icon', ['name' => 'sliders', 'class' => 'w-5 h-5'])
     </button>
   </div>
 
   {{-- Search --}}
   <label class="g-card lg:bg-white lg:border lg:border-gray-100 flex items-center gap-2 py-2.5 mb-6">
-    @include('partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
+    @include('dashboard.partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
     <input type="text" placeholder="Cari notifikasi..."
            class="w-full text-sm bg-transparent outline-none placeholder:text-ink-soft/70">
   </label>
@@ -32,7 +32,7 @@
       </div>
       <div class="flex flex-col gap-3" data-stagger>
         @foreach($items as $notif)
-          @include('partials.notification-item', ['notif' => $notif])
+          @include('dashboard.partials.notification-item', ['notif' => $notif])
         @endforeach
       </div>
     </div>

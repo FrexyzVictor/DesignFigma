@@ -48,6 +48,6 @@ class AppController extends Controller
             ],
         ];
 
-        return view('apps', ['apps' => $apps]);
+        return view('dashboard.apps', ['apps' => $apps]);
     }
 }

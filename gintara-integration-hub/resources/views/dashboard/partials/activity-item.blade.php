@@ -27,7 +27,7 @@
 
   <div class="flex items-center gap-3 min-w-0 flex-1 lg:flex-none">
     <span class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 {{ $iconTone }}">
-      @include('partials.icon', ['name' => $icon, 'class' => 'w-4 h-4'])
+      @include('dashboard.partials.icon', ['name' => $icon, 'class' => 'w-4 h-4'])
     </span>
     <div class="min-w-0">
       <p class="text-sm font-semibold text-ink truncate">{{ $item['title'] }}</p>

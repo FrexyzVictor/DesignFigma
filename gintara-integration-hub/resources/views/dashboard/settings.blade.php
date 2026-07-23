@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 @section('title', 'Pengaturan - Gintara Net')
 
 @section('content')
@@ -6,7 +6,7 @@
 <div class="lg:max-w-2xl">
 
   <div class="mb-4 lg:mb-6">
-    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium">Preferensi</p>
+    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium"></p>
     <h1 class="text-lg lg:text-2xl font-bold text-ink">Pengaturan</h1>
   </div>
 
@@ -26,7 +26,7 @@
       <p class="text-xs uppercase tracking-wide text-ink-soft font-semibold mb-2 px-1">{{ $section['label'] }}</p>
       <div class="bg-white rounded-card shadow-card overflow-hidden divide-y divide-gray-100" data-stagger>
         @foreach($section['items'] as $item)
-          @include('partials.setting-item', ['item' => $item])
+          @include('dashboard.partials.setting-item', ['item' => $item])
         @endforeach
       </div>
     </div>
@@ -37,7 +37,7 @@
     @csrf
     <button type="submit" data-ripple
             class="g-ripple-container w-full flex items-center justify-center gap-2 bg-danger-bg text-danger font-semibold rounded-card py-3.5 mb-4 hover:bg-danger/10 active:scale-[.99] transition-all">
-      @include('partials.icon', ['name' => 'logout', 'class' => 'w-4 h-4'])
+      @include('dashboard.partials.icon', ['name' => 'logout', 'class' => 'w-4 h-4'])
       Keluar
     </button>
   </form>

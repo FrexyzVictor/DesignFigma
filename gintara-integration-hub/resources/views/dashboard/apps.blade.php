@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 @section('title', 'Daftar Aplikasi - Gintara Net')
 
 @section('content')
@@ -9,35 +9,36 @@
     <h1 class="text-lg lg:text-2xl font-bold text-ink">Daftar Aplikasi</h1>
   </div>
   <a href="#" data-ripple class="g-ripple-container g-btn-primary hidden lg:inline-flex px-4 py-2.5 text-sm">
-    @include('partials.icon', ['name' => 'plus', 'class' => 'w-4 h-4'])
+    @include('dashboard.partials.icon', ['name' => 'plus', 'class' => 'w-4 h-4'])
     Tambah Aplikasi
   </a>
 </div>
 
-{{-- Tombol tambah mengambang khusus mobile — pakai `fixed` (bukan `absolute`)
-     supaya posisinya selalu tetap di layar, tidak ikut "tumpah" ke elemen lain
-     tergantung tinggi kontainer di atasnya. --}}
+{{-- Tombol tambah mengambang khusus mobile — posisi dikunci pakai style inline
+     (bukan cuma class Tailwind) supaya tetap benar di kanan-bawah walau
+     ada masalah build/cache CSS. "fixed" = ikut diam di tempat saat discroll. --}}
 <a href="#" data-ripple
-   class="g-ripple-container g-btn-primary lg:hidden fixed bottom-24 right-5 z-30 w-12 h-12 rounded-full p-0 shadow-card-lg">
-  @include('partials.icon', ['name' => 'plus', 'class' => 'w-5 h-5'])
+   style="position:fixed; bottom:6rem; right:1.25rem; z-index:30;"
+   class="g-ripple-container g-btn-primary lg:hidden w-12 h-12 rounded-full p-0 shadow-card-lg">
+  @include('dashboard.partials.icon', ['name' => 'plus', 'class' => 'w-5 h-5'])
 </a>
 
 {{-- Search + filter --}}
 <div class="flex items-center gap-2 mb-5">
   <label class="flex-1 flex items-center gap-2 bg-white border border-gray-100 rounded-xl px-3 py-2.5">
-    @include('partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
+    @include('dashboard.partials.icon', ['name' => 'search', 'class' => 'w-4 h-4 text-ink-soft'])
     <input type="text" placeholder="Cari sistem..."
            class="w-full text-sm bg-transparent outline-none placeholder:text-ink-soft/70">
   </label>
   <button type="button" class="w-11 h-11 shrink-0 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-ink-soft">
-    @include('partials.icon', ['name' => 'filter', 'class' => 'w-4 h-4'])
+    @include('dashboard.partials.icon', ['name' => 'filter', 'class' => 'w-4 h-4'])
   </button>
 </div>
 
 {{-- Daftar aplikasi: 1 kolom di HP, grid beberapa kolom di layar besar --}}
 <div class="flex flex-col gap-4 lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:gap-5" data-stagger>
   @forelse($apps as $app)
-    @include('partials.app-card', ['app' => $app])
+    @include('dashboard.partials.app-card', ['app' => $app])
   @empty
     <p class="text-sm text-ink-soft text-center py-10 lg:col-span-full">Belum ada aplikasi yang terhubung.</p>
   @endforelse
