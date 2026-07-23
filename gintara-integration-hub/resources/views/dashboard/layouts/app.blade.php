@@ -39,6 +39,18 @@
       </div>
 
       <nav class="flex flex-col gap-1">
+<<<<<<< HEAD
+        <a href="{{ route('dashboard.index') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+          @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
+        </a>
+        <a href="{{ route('dashboard.events') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+          @include('dashboard.partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5']) Event
+        </a>
+        <a href="{{ route('dashboard.apps') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+          @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
+        </a>
+        <a href="#" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+=======
         <a href="{{ route('dashboard') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
           @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5']) Beranda
         </a>
@@ -49,12 +61,17 @@
           @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5']) Aplikasi
         </a>
         <a href="{{ route('sync-logs') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+>>>>>>> 49861d242f046c724dd80a6d6bd7a79575525042
           @include('dashboard.partials.icon', ['name' => 'list', 'class' => 'w-5 h-5']) Log Sinkronisasi
         </a>
       </nav>
 
       <div class="mt-auto">
+<<<<<<< HEAD
+        <a href="{{ route('dashboard.settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+=======
         <a href="{{ route('settings') }}" data-nav-link data-ripple class="g-sidebar-link g-ripple-container">
+>>>>>>> 49861d242f046c724dd80a6d6bd7a79575525042
           @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5']) Profil
         </a>
       </div>
@@ -89,7 +106,7 @@
         </label>
 
         <div class="flex items-center gap-4">
-          <a href="{{ route('notifications') }}" class="relative w-10 h-10 rounded-full bg-white lg:bg-surface shadow-card lg:shadow-none flex items-center justify-center text-ink-soft">
+          <a href="{{ route('dashboard.notifications') }}" class="relative w-10 h-10 rounded-full bg-white lg:bg-surface shadow-card lg:shadow-none flex items-center justify-center text-ink-soft">
             @include('dashboard.partials.icon', ['name' => 'bell', 'class' => 'w-5 h-5'])
             <span class="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-danger"></span>
           </a>
@@ -112,25 +129,25 @@
 
   {{-- Bottom nav: tampil di HP saja, hilang otomatis di layar besar --}}
   <nav class="g-bottom-nav lg:hidden">
-    <a href="{{ route('dashboard') }}" data-nav-link>
+    <a href="{{ route('dashboard.index') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'home', 'class' => 'w-5 h-5'])
       </span>
       Beranda
     </a>
-    <a href="{{ route('events') }}" data-nav-link>
+    <a href="{{ route('dashboard.events') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'activity', 'class' => 'w-5 h-5'])
       </span>
       Event
     </a>
-    <a href="{{ route('apps') }}" data-nav-link>
+    <a href="{{ route('dashboard.apps') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'apps', 'class' => 'w-5 h-5'])
       </span>
       Aplikasi
     </a>
-    <a href="{{ route('settings') }}" data-nav-link>
+    <a href="{{ route('dashboard.settings') }}" data-nav-link>
       <span class="g-nav-bubble g-ripple-container" data-ripple>
         @include('dashboard.partials.icon', ['name' => 'user', 'class' => 'w-5 h-5'])
       </span>

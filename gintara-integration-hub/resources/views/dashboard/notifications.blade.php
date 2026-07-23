@@ -32,7 +32,7 @@
       </div>
       <div class="flex flex-col gap-3" data-stagger>
         @foreach($items as $notif)
-          @include('dashboard.partials.notification-item', ['notif' => $notif])
+          @include('dashboardpartials.notification-item', ['notif' => $notif])
         @endforeach
       </div>
     </div>

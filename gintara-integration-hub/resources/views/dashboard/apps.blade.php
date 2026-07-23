@@ -18,8 +18,7 @@
      (bukan cuma class Tailwind) supaya tetap benar di kanan-bawah walau
      ada masalah build/cache CSS. "fixed" = ikut diam di tempat saat discroll. --}}
 <a href="#" data-ripple
-   style="position:fixed; bottom:6rem; right:1.25rem; z-index:30;"
-   class="g-ripple-container g-btn-primary lg:hidden w-12 h-12 rounded-full p-0 shadow-card-lg">
+   class="g-ripple-container g-btn-primary lg:hidden fixed bottom-24 right-5 z-30 w-12 h-12 rounded-full p-0 shadow-card-lg">
   @include('dashboard.partials.icon', ['name' => 'plus', 'class' => 'w-5 h-5'])
 </a>
 
