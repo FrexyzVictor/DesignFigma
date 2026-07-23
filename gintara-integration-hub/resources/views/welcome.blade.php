@@ -50,7 +50,6 @@ p{margin:auto}
 <div class="buttons">
 <a href="{{ route('dashboard.index') }}" class="btn-primary">📊 Masuk Dashboard</a>
 <a href="{{ route('customers.index') }}" class="btn-secondary">👥 Manajemen Pelanggan</a>
-<a href="{{ route('events.index') }}" class="btn-success">📅 Events</a>
 </div>
 </div>
 <div class="right">
