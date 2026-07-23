@@ -29,7 +29,7 @@ class EventController extends Controller
                     'Selesai' => 'check-circle',
                     'Dibatalkan' => 'alert',
                     default => 'calendar',
-                },
+                },  
             ];
 
         });

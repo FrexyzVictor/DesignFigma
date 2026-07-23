@@ -61,7 +61,7 @@ class EventsController extends Controller
         $event->update($request->all());
 
         return redirect()
-            ->route('dashboard.events')
+            ->route('ashboard.events')
             ->with('success', 'Event berhasil diperbarui.');
     }
 
