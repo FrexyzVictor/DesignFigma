@@ -1,4 +1,4 @@
-{{-- Pakai: @include('partials.icon', ['name' => 'bolt', 'class' => 'w-5 h-5']) --}}
+{{-- Pakai: @include('dashboard.partials.icon', ['name' => 'bolt', 'class' => 'w-5 h-5']) --}}
 @php $cls = $class ?? 'w-5 h-5'; @endphp
 
 @switch($name)

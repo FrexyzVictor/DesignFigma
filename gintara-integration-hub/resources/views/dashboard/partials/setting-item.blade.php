@@ -16,11 +16,11 @@
 
   @if(($item['type'] ?? 'link') === 'toggle')
     <label class="relative inline-flex items-center cursor-pointer pointer-events-auto">
-      <input type="checkbox" class="sr-only peer" {{ ($item['checked'] ?? false) ? 'checked' : '' }}>
+      <input type="checkbox" class="sr-only peer" data-toggle="{{ $item['key'] ?? '' }}" {{ ($item['checked'] ?? false) ? 'checked' : '' }}>
       <div class="g-toggle-track"></div>
       <div class="g-toggle-thumb"></div>
     </label>
   @else
-    @include('partials.icon', ['name' => 'chevron-right', 'class' => 'w-4 h-4 text-ink-soft shrink-0'])
+    @include('dashboard.partials.icon', ['name' => 'chevron-right', 'class' => 'w-4 h-4 text-ink-soft shrink-0'])
   @endif
 </a>

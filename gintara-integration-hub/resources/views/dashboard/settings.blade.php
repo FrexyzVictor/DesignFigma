@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.layouts.app')
 @section('title', 'Pengaturan - Gintara Net')
 
 @section('content')
@@ -6,7 +6,7 @@
 <div class="lg:max-w-2xl">
 
   <div class="mb-4 lg:mb-6">
-    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium">Preferensi</p>
+    <p class="text-xs uppercase tracking-wide text-ink-soft font-medium"></p>
     <h1 class="text-lg lg:text-2xl font-bold text-ink">Pengaturan</h1>
   </div>
 
@@ -26,7 +26,7 @@
       <p class="text-xs uppercase tracking-wide text-ink-soft font-semibold mb-2 px-1">{{ $section['label'] }}</p>
       <div class="bg-white rounded-card shadow-card overflow-hidden divide-y divide-gray-100" data-stagger>
         @foreach($section['items'] as $item)
-          @include('dashboardpartials.setting-item', ['item' => $item])
+          @include('dashboard.partials.setting-item', ['item' => $item])
         @endforeach
       </div>
     </div>

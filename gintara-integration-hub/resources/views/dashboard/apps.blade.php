@@ -14,9 +14,9 @@
   </a>
 </div>
 
-{{-- Tombol tambah mengambang khusus mobile — pakai `fixed` (bukan `absolute`)
-     supaya posisinya selalu tetap di layar, tidak ikut "tumpah" ke elemen lain
-     tergantung tinggi kontainer di atasnya. --}}
+{{-- Tombol tambah mengambang khusus mobile — posisi dikunci pakai style inline
+     (bukan cuma class Tailwind) supaya tetap benar di kanan-bawah walau
+     ada masalah build/cache CSS. "fixed" = ikut diam di tempat saat discroll. --}}
 <a href="#" data-ripple
    class="g-ripple-container g-btn-primary lg:hidden fixed bottom-24 right-5 z-30 w-12 h-12 rounded-full p-0 shadow-card-lg">
   @include('dashboard.partials.icon', ['name' => 'plus', 'class' => 'w-5 h-5'])
