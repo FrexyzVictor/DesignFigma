@@ -48,7 +48,7 @@ p{margin:auto}
 <h1>Selamat Datang di <span>GINTARA.NET</span></h1>
 <p>Platform Master Data Sync untuk mengelola sinkronisasi data pelanggan, monitoring aplikasi, dan integrasi sistem secara real-time dengan tampilan modern dan mudah digunakan.</p>
 <div class="buttons">
-<a href="{{ route('dashboard.index') }}" class="btn-primary">📊 Masuk Dashboard</a>
+<a href="{{ route('login') }}" class="btn-primary">📊 Masuk Dashboard</a>
 <a href="{{ route('customers.index') }}" class="btn-secondary">👥 Manajemen Pelanggan</a>
 </div>
 </div>
