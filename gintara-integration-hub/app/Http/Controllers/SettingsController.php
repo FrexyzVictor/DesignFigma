@@ -52,7 +52,7 @@ class SettingsController extends Controller
             ],
         ];
 
-        return view('dashboard.settings', [
+        return view('dashboard.settings.settings', [
             'profile' => $profile,
             'sections' => $sections,
             'appVersion' => '2.4.1 (build 882)',
