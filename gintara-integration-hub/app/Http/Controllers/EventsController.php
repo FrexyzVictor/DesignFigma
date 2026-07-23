@@ -33,7 +33,7 @@ class EventsController extends Controller
         Event::create($request->all());
 
         return redirect()
-            ->route('event.index')
+            ->route('dashboard.events')
             ->with('success', 'Event berhasil ditambahkan.');
     }
 
@@ -61,7 +61,7 @@ class EventsController extends Controller
         $event->update($request->all());
 
         return redirect()
-            ->route('event.index')
+            ->route('dashboard.events')
             ->with('success', 'Event berhasil diperbarui.');
     }
 
@@ -70,7 +70,7 @@ class EventsController extends Controller
         $event->delete();
 
         return redirect()
-            ->route('event.index')
+            ->route('dashboard.events')
             ->with('success', 'Event berhasil dihapus.');
     }
 }
