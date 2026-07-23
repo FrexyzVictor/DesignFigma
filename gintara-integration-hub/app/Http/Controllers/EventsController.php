@@ -11,12 +11,12 @@ class EventsController extends Controller
     {
         $events = Event::latest()->get();
 
-        return view('event.index', compact('events'));
+        return view('dashboard.events.index', compact('events'));
     }
 
     public function create()
     {
-        return view('event.create');
+        return view('dashboard.events.create');
     }
 
     public function store(Request $request)
@@ -33,18 +33,18 @@ class EventsController extends Controller
         Event::create($request->all());
 
         return redirect()
-            ->route('dashboard.events')
+            ->route('dashboard.events.index')
             ->with('success', 'Event berhasil ditambahkan.');
     }
 
     public function show(Event $event)
     {
-        return view('event.show', compact('event'));
+        return view('dashboard.events.show', compact('event'));
     }
 
     public function edit(Event $event)
     {
-        return view('event.edit', compact('event'));
+        return view('dashboard.events.edit', compact('event'));
     }
 
     public function update(Request $request, Event $event)
@@ -61,7 +61,7 @@ class EventsController extends Controller
         $event->update($request->all());
 
         return redirect()
-            ->route('ashboard.events')
+            ->route('dashboard.events.show', $event)
             ->with('success', 'Event berhasil diperbarui.');
     }
 
@@ -70,7 +70,7 @@ class EventsController extends Controller
         $event->delete();
 
         return redirect()
-            ->route('dashboard.events')
+            ->route('dashboard.events.index')
             ->with('success', 'Event berhasil dihapus.');
     }
 }

@@ -1,6 +1,8 @@
 import './bootstrap';
 // Jika project kamu sudah punya resources/js/bootstrap.js (axios, echo, dll),
 // import di sini: import './bootstrap';
+// Jika project kamu sudah punya resources/js/bootstrap.js (axios, echo, dll),
+// import di sini: import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', () => {
   markDeviceType();

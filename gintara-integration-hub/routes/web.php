@@ -19,7 +19,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
         ->name('index');
 
-    Route::get('/events', [EventController::class, 'index'])
+    Route::get('/events', [EventsController::class, 'index'])
         ->name('events');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/aplikasi', [AppController::class, 'index'])->name('apps');
