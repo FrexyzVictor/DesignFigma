@@ -8,7 +8,6 @@ class AppController extends Controller
 {
     public function index(Request $request)
     {
-        // Ganti dengan query asli, mis. Application::query()->latest()->get()
         $apps = [
             [
                 'name' => 'Sistem Manajemen',
@@ -49,5 +48,8 @@ class AppController extends Controller
         ];
 
         return view('dashboard.apps.apps', ['apps' => $apps]);
+        return view('dashboard.apps', [
+            'apps' => $apps
+        ]);
     }
 }
